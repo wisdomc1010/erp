@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pres.wisdom.dao.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="pres.wisdom.entity.Goods" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="num" property="num" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="cost" property="cost" jdbcType="DECIMAL" />
+    <result column="supplier_id" property="supplierId" jdbcType="INTEGER" />
+    <result column="use_state" property="useState" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="create_id" property="createId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_id" property="updateId" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, num, name, price, cost, supplier_id, use_state, state, create_id, create_time, 
+    update_id, update_time, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="pres.wisdom.entity.Goods" >
+    insert into t_goods (id, num, name, 
+      price, cost, supplier_id, 
+      use_state, state, create_id, 
+      create_time, update_id, update_time, 
+      remark)
+    values (#{id,jdbcType=INTEGER}, #{num,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{cost,jdbcType=DECIMAL}, #{supplierId,jdbcType=INTEGER}, 
+      #{useState,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, #{createId,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateId,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="pres.wisdom.entity.Goods" >
+    insert into t_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="cost != null" >
+        cost,
+      </if>
+      <if test="supplierId != null" >
+        supplier_id,
+      </if>
+      <if test="useState != null" >
+        use_state,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="createId != null" >
+        create_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateId != null" >
+        update_id,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="cost != null" >
+        #{cost,jdbcType=DECIMAL},
+      </if>
+      <if test="supplierId != null" >
+        #{supplierId,jdbcType=INTEGER},
+      </if>
+      <if test="useState != null" >
+        #{useState,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null" >
+        #{createId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null" >
+        #{updateId,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="pres.wisdom.entity.Goods" >
+    update t_goods
+    <set >
+      <if test="num != null" >
+        num = #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="cost != null" >
+        cost = #{cost,jdbcType=DECIMAL},
+      </if>
+      <if test="supplierId != null" >
+        supplier_id = #{supplierId,jdbcType=INTEGER},
+      </if>
+      <if test="useState != null" >
+        use_state = #{useState,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null" >
+        create_id = #{createId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null" >
+        update_id = #{updateId,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pres.wisdom.entity.Goods" >
+    update t_goods
+    set num = #{num,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      cost = #{cost,jdbcType=DECIMAL},
+      supplier_id = #{supplierId,jdbcType=INTEGER},
+      use_state = #{useState,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      create_id = #{createId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_id = #{updateId,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByNum" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_goods
+		where num = #{num,jdbcType=VARCHAR}
+  </select>
+  <select id="findRows" resultType="int">
+		select
+		count(1)
+		from t_goods
+  </select>
+  	<update id="updateStateByPrimaryKey" parameterType="java.lang.Integer">
+		update t_goods
+		set state = CASE state WHEN 0 THEN 1 ELSE 0 END 
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateUseStateByPrimaryKey" parameterType="java.lang.Integer">
+		update t_goods
+		set use_State = CASE use_State WHEN 0 THEN 1 ELSE 0 END 
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+  <select id="selectByCondition" parameterType="pres.wisdom.entity.GoodsPage"
+		resultType="pres.wisdom.dto.GoodsInfoListDto">
+		select g.id,g.num,g.name,g.price,g.cost,s.name as supplier,g.state,g.use_state as useState,
+		oc.realname as createOperator,g.create_time as createTime,ou.realname as updateOperator,
+		g.update_time as updateTime,g.remark
+		from t_goods g
+		left outer join t_supplier s on g.supplier_id=s.id
+		left outer join t_operator oc on g.create_id=oc.id
+		left outer join t_operator ou on g.update_id=ou.id
+		<where>
+			<if test='!"*".equals(num)'>
+				g.num like '%'||#{name}||'%'
+			</if>
+			<if test='!"*".equals(name)'>
+				and g.name like '%'||#{name}||'%'
+			</if>
+			<if test='!"*".equals(supplier)'>
+				and s.name like '%'||#{supplier}'%'
+			</if>
+			<if test='!"-1".equals(state.toString())'>
+				and g.state=#{state}
+			</if>
+			<if test='!"-1".equals(useState.toString())'>
+				and g.use_state=#{useState}
+			</if>
+		</where>
+		order by g.id
+   		limit 
+   		#{begin,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+	</select>
+</mapper>

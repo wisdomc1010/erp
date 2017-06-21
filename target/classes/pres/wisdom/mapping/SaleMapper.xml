@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pres.wisdom.dao.SaleMapper" >
+  <resultMap id="BaseResultMap" type="pres.wisdom.entity.Sale" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sale_num" property="saleNum" jdbcType="VARCHAR" />
+    <result column="customer_id" property="customerId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="sum_price" property="sumPrice" jdbcType="DECIMAL" />
+    <result column="sum_number" property="sumNumber" jdbcType="INTEGER" />
+    <result column="create_id" property="createId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_id" property="updateId" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="review_id" property="reviewId" jdbcType="INTEGER" />
+    <result column="review_time" property="reviewTime" jdbcType="TIMESTAMP" />
+    <result column="account_id" property="accountId" jdbcType="INTEGER" />
+    <result column="account_time" property="accountTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sale_num, customer_id, type, state, sum_price, sum_number, create_id, create_time, 
+    update_id, update_time, review_id, review_time, account_id, account_time, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_sale
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_sale
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="pres.wisdom.entity.Sale" >
+    insert into t_sale (id, sale_num, customer_id, 
+      type, state, sum_price, 
+      sum_number, create_id, create_time, 
+      update_id, update_time, review_id, 
+      review_time, account_id, account_time, 
+      remark)
+    values (#{id,jdbcType=INTEGER}, #{saleNum,jdbcType=VARCHAR}, #{customerId,jdbcType=INTEGER}, 
+      #{type,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, #{sumPrice,jdbcType=DECIMAL}, 
+      #{sumNumber,jdbcType=INTEGER}, #{createId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateId,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{reviewId,jdbcType=INTEGER}, 
+      #{reviewTime,jdbcType=TIMESTAMP}, #{accountId,jdbcType=INTEGER}, #{accountTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="pres.wisdom.entity.Sale" >
+    insert into t_sale
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="saleNum != null" >
+        sale_num,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="sumPrice != null" >
+        sum_price,
+      </if>
+      <if test="sumNumber != null" >
+        sum_number,
+      </if>
+      <if test="createId != null" >
+        create_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateId != null" >
+        update_id,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="reviewId != null" >
+        review_id,
+      </if>
+      <if test="reviewTime != null" >
+        review_time,
+      </if>
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="accountTime != null" >
+        account_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="saleNum != null" >
+        #{saleNum,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="sumPrice != null" >
+        #{sumPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sumNumber != null" >
+        #{sumNumber,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null" >
+        #{createId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null" >
+        #{updateId,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviewId != null" >
+        #{reviewId,jdbcType=INTEGER},
+      </if>
+      <if test="reviewTime != null" >
+        #{reviewTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="accountTime != null" >
+        #{accountTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="pres.wisdom.entity.Sale" >
+    update t_sale
+    <set >
+      <if test="saleNum != null" >
+        sale_num = #{saleNum,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="sumPrice != null" >
+        sum_price = #{sumPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sumNumber != null" >
+        sum_number = #{sumNumber,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null" >
+        create_id = #{createId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null" >
+        update_id = #{updateId,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reviewId != null" >
+        review_id = #{reviewId,jdbcType=INTEGER},
+      </if>
+      <if test="reviewTime != null" >
+        review_time = #{reviewTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountId != null" >
+        account_id = #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="accountTime != null" >
+        account_time = #{accountTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pres.wisdom.entity.Sale" >
+    update t_sale
+    set sale_num = #{saleNum,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      sum_price = #{sumPrice,jdbcType=DECIMAL},
+      sum_number = #{sumNumber,jdbcType=INTEGER},
+      create_id = #{createId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_id = #{updateId,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      review_id = #{reviewId,jdbcType=INTEGER},
+      review_time = #{reviewTime,jdbcType=TIMESTAMP},
+      account_id = #{accountId,jdbcType=INTEGER},
+      account_time = #{accountTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="findRows" resultType="int" parameterType="pres.wisdom.entity.SalePage">
+		select count(1)
+		from 
+		(select s.id,s.sale_num as saleNum,c.name as customer,s.type,s.state,
+		s.sum_price as sumPrice,s.sum_number as sumNumber,oc.realname as createOperator,
+		s.create_time as createTime,ou.realname as updateOperator,s.update_time as updateTime,
+		orw.realname as reviewOperator,s.review_time as reviewTime,
+		oa.realname as accountOperator,s.account_time as accountTime,s.remark
+		from t_sale s
+		left outer join t_customer c on s.customer_id=c.id
+		left outer join t_operator oc on s.create_id=oc.id
+		left outer join t_operator ou on s.update_id=ou.id
+		left outer join t_operator orw on s.review_id=orw.id
+		left outer join t_operator oa on s.account_id=oa.id
+		<where>
+			<if test='!"*".equals(customer)'>
+				c.name like CONCAT('%',#{customer},'%')  
+			</if>
+			<if test='!"-1".equals(state.toString())'>
+				and s.state=#{state}
+			</if>
+			<if test='!"-1".equals(type.toString())'>
+				and s.type=#{type}
+			</if>
+		</where>) a
+  </select>
+  <select id="selectByCondition" parameterType="pres.wisdom.entity.SalePage"
+		resultType="pres.wisdom.entity.SalePage">
+		select s.id,s.sale_num as saleNum,c.name as customer,s.type,s.state,
+		s.sum_price as sumPrice,s.sum_number as sumNumber,oc.realname as createOperator,
+		s.create_time as createTime,ou.realname as updateOperator,s.update_time as updateTime,
+		orw.realname as reviewOperator,s.review_time as reviewTime,
+		oa.realname as accountOperator,s.account_time as accountTime,s.remark
+		from t_sale s
+		left outer join t_customer c on s.customer_id=c.id
+		left outer join t_operator oc on s.create_id=oc.id
+		left outer join t_operator ou on s.update_id=ou.id
+		left outer join t_operator orw on s.review_id=orw.id
+		left outer join t_operator oa on s.account_id=oa.id
+		<where>
+			<if test='!"*".equals(customer)'>
+				c.name like CONCAT('%',#{customer},'%')  
+			</if>
+			<if test='!"-1".equals(state.toString())'>
+				and s.state=#{state}
+			</if>
+			<if test='createTime != null and createTime !=""'>
+				and substring(s.create_time,1,10)=DATE_FORMAT(#{createTime},'%Y-%m-%d')
+			</if>
+			<if test='!"-1".equals(type.toString())'>
+				and s.type=#{type}
+			</if>
+		</where>
+		order by s.id
+   		limit 
+   		#{begin,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+	</select>
+	
+	<select id="findPinYin" parameterType="java.lang.Integer" resultType="java.lang.String">
+  		select LTRIM(RTRIM(getPY(name))) 
+		from t_customer
+		where id=#{customerId,jdbcType=INTEGER}
+  	</select>
+  	
+	<select id="findMaxNo" parameterType="pres.wisdom.entity.SalePage" resultType="java.lang.String">
+  		select MAX(sale_num) 
+  		from t_sale
+        where type=#{type,jdbcType=INTEGER} 
+  		and customer_id=#{customerId,jdbcType=INTEGER} 
+  		and sale_num LIKE CONCAT(#{saleNum,jdbcType=VARCHAR},'%')  
+  	</select>
+  	
+  	<update id="updateStateByPrimaryKey" parameterType="java.lang.Integer">
+		update t_sale
+		set state = 1
+		where id = #{id,jdbcType=INTEGER} and state = 0
+	</update>
+    <update id="updateBackStateByPrimaryKey" parameterType="java.lang.Integer">
+		update t_sale
+		set state = 0
+		where id = #{id,jdbcType=INTEGER} and state = 1
+	</update>
+	<update id="updateReviewStateByPrimaryKey" parameterType="pres.wisdom.entity.Sale">
+		update t_sale
+		set 
+			state = 2,
+			review_id = #{reviewId,jdbcType=INTEGER},
+      		review_time = #{reviewTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER} and state = 1
+	</update>
+	<update id="updateAccountStateByPrimaryKey" parameterType="pres.wisdom.entity.Sale">
+		update t_sale
+		set 
+			state = 3,
+			account_id = #{accountId,jdbcType=INTEGER},
+      		account_time = #{accountTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER} and state = 2
+	</update>
+	
+	<select id="selectBySaleId" resultType="pres.wisdom.entity.SalePage" parameterType="java.lang.Integer" >
+	    select s.id,s.sale_num as saleNum,s.customer_id as customerId,c.name as customer,s.type,s.state,
+		s.sum_number as sumNumber,o.realname as createOperator,s.create_id as createId,
+		s.create_time as createTime,s.remark
+		from t_sale s
+		left outer join t_customer c on s.customer_id=c.id
+		left outer join t_operator o on s.create_id=o.id
+	    where s.id = #{id,jdbcType=INTEGER} and s.type=0
+    </select>
+    
+    <select id="selectBySaleBackId" resultType="pres.wisdom.entity.SalePage" parameterType="java.lang.Integer" >
+	    select s.id,s.sale_num as saleNum,s.customer_id as customerId,c.name as customer,s.type,s.state,
+		s.sum_number as sumNumber,o.realname as createOperator,s.create_id as createId,
+		s.create_time as createTime,s.remark
+		from t_sale s
+		left outer join t_customer c on s.customer_id=c.id
+		left outer join t_operator o on s.create_id=o.id
+	    where s.id = #{id,jdbcType=INTEGER} and s.type=1
+    </select>
+    
+      <select id="selectStateByPrimaryKey" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		select state
+		from t_sale
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+
+</mapper>

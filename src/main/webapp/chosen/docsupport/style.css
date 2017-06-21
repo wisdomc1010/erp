@@ -1,0 +1,89 @@
+/* Reset */
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after, q:before, q:after { content: ""; content: none; }
+ins { background-color: #ff9; color: #000; text-decoration: none; }
+mark { background-color: #ff9; color: #000; font-style: italic;}
+del { text-decoration: line-through; }
+abbr[title], dfn[title] { border-bottom: 1px dotted; cursor: help; }
+
+hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
+input, select { vertical-align: middle; }
+
+select, input, textarea, button { font:99% sans-serif; }
+pre, code, kbd, samp { font-family: monospace, sans-serif; }
+
+div#content { background: white; border: 1px solid #ccc; border-width: 0 1px 1px; margin: 0 auto; padding: 40px 50px 40px; width: 738px; }
+
+footer { color: #999; padding-top: 40px; font-size: 0.8em; text-align: center; }
+
+table+p { margin-top: 1em; }
+
+li > p { margin-top: .25em; }
+
+.faqs em { display: block; }
+
+.clearfix:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  clear: both;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+
+ul.credits li { margin-bottom: .25em; }
+
+i { font-style: italic; }
+
+/* Tweak navbar brand link to be super sleek
+-------------------------------------------------- */
+
+
+.docs-table th, .docs-table td {
+  border: 1px solid #000;
+  padding: 4px 6px;
+  white-space: nowrap;
+}
+
+.docs-table td:last-child {
+  white-space: normal;
+}
+
+.docs-table th {
+  text-align: left;
+}
+
+#content pre[class*=language-] {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+#content pre[class*=language-] code {
+  font-size: 14px;
+  padding: 0;
+}
+
+#content code[class*=language-] {
+  font-size: 12px;
+  padding: 2px 4px;
+}
+
+
+.select,
+.chosen-select,
+.chosen-select-no-single,
+.chosen-select-no-results,
+.chosen-select-deselect,
+.chosen-select-rtl,
+.chosen-select-width {
+  width: 192px;
+}
+
+.jquery-version-refer {
+  margin-top: 40px;
+  font-style: italic;
+}

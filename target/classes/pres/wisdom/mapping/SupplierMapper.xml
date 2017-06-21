@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pres.wisdom.dao.SupplierMapper" >
+  <resultMap id="BaseResultMap" type="pres.wisdom.entity.Supplier" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="contacts" property="contacts" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="use_state" property="useState" jdbcType="INTEGER" />
+    <result column="create_id" property="createId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_id" property="updateId" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, contacts, phone, province, city, address, state, use_state, create_id, 
+    create_time, update_id, update_time, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_supplier
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_supplier
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="pres.wisdom.entity.Supplier" >
+    insert into t_supplier (id, name, contacts, 
+      phone, province, city, 
+      address, state, use_state, 
+      create_id, create_time, update_id, 
+      update_time, remark)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{contacts,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{useState,jdbcType=INTEGER}, 
+      #{createId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateId,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="pres.wisdom.entity.Supplier" >
+    insert into t_supplier
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="contacts != null" >
+        contacts,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="useState != null" >
+        use_state,
+      </if>
+      <if test="createId != null" >
+        create_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateId != null" >
+        update_id,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null" >
+        #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="useState != null" >
+        #{useState,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null" >
+        #{createId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null" >
+        #{updateId,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="pres.wisdom.entity.Supplier" >
+    update t_supplier
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null" >
+        contacts = #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="useState != null" >
+        use_state = #{useState,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null" >
+        create_id = #{createId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null" >
+        update_id = #{updateId,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pres.wisdom.entity.Supplier" >
+    update t_supplier
+    set name = #{name,jdbcType=VARCHAR},
+      contacts = #{contacts,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      use_state = #{useState,jdbcType=INTEGER},
+      create_id = #{createId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_id = #{updateId,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_supplier
+		where use_state=1
+	</select>
+	<select id="findRows" resultType="int" parameterType="pres.wisdom.entity.SupplierPage">
+		select
+		count(1)
+		from 
+		(select s.id,s.name,s.contacts,s.phone,s.province,s.city,s.address,
+		s.state,s.use_state as useState,oc.realname as createOperator,s.create_time as createTime,
+		ou.realname as updateOperator,s.update_time as updateTime,s.remark
+		from t_supplier s
+		left outer join t_operator oc on s.create_id=oc.id
+		left outer join t_operator ou on s.update_id=ou.id
+		<where>
+			<if test='!"*".equals(name)'>
+				s.name like CONCAT('%',#{name},'%')  
+			</if>
+			<if test='!"*".equals(contacts)'>
+				and s.contacts like CONCAT('%',#{contacts},'%')  
+			</if>
+			<if test='!"*".equals(phone)'>
+				and s.phone like CONCAT('%',#{phone},'%')  
+			</if>
+			<if test='!"-1".equals(state.toString())'>
+				and s.state=#{state}
+			</if>
+			<if test='!"-1".equals(useState.toString())'>
+				and s.use_state=#{useState}
+			</if>
+		</where>) a
+  </select>
+    <select id="selectByName" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_supplier
+		where name = #{name,jdbcType=VARCHAR}
+  </select>
+    <update id="updateStateByPrimaryKey" parameterType="java.lang.Integer">
+		update t_supplier
+		set state = CASE state WHEN 0 THEN 1 ELSE 0 END 
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateUseStateByPrimaryKey" parameterType="java.lang.Integer">
+		update t_supplier
+		set use_State = CASE use_State WHEN 0 THEN 1 ELSE 0 END 
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByCondition" parameterType="pres.wisdom.entity.SupplierPage"
+		resultType="pres.wisdom.entity.SupplierPage">
+		select s.id,s.name,s.contacts,s.phone,s.province,s.city,s.address,
+		s.state,s.use_state as useState,oc.realname as createOperator,s.create_time as createTime,
+		ou.realname as updateOperator,s.update_time as updateTime,s.remark
+		from t_supplier s
+		left outer join t_operator oc on s.create_id=oc.id
+		left outer join t_operator ou on s.update_id=ou.id
+		<where>
+			<if test='!"*".equals(name)'>
+				s.name like CONCAT('%',#{name},'%')  
+			</if>
+			<if test='!"*".equals(contacts)'>
+				and s.contacts like CONCAT('%',#{contacts},'%')  
+			</if>
+			<if test='!"*".equals(phone)'>
+				and s.phone like CONCAT('%',#{phone},'%')  
+			</if>
+			<if test='!"-1".equals(state.toString())'>
+				and s.state=#{state}
+			</if>
+			<if test='!"-1".equals(useState.toString())'>
+				and s.use_state=#{useState}
+			</if>
+		</where>
+		order by s.id
+   		limit 
+   		#{begin,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+	</select>
+</mapper>

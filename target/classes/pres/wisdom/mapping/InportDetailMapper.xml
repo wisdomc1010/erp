@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pres.wisdom.dao.InportDetailMapper" >
+  <resultMap id="BaseResultMap" type="pres.wisdom.entity.InportDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="supplier_id" property="supplierId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="inport_num" property="inportNum" jdbcType="VARCHAR" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, supplier_id, type, inport_num, goods_id, number, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_inportdetail
+    where id = #{id,jdbcType=INTEGER} and type=0
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_inportdetail
+    where id = #{id,jdbcType=INTEGER} and type=0
+  </delete>
+  <insert id="insert" parameterType="pres.wisdom.entity.InportDetail" >
+    insert into t_inportdetail (id, supplier_id, type, 
+      inport_num, goods_id, number, 
+      remark)
+    values (#{id,jdbcType=INTEGER}, #{supplierId,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{inportNum,jdbcType=VARCHAR}, #{goodsId,jdbcType=INTEGER}, #{number,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="pres.wisdom.entity.InportDetail" >
+    insert into t_inportdetail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="supplierId != null" >
+        supplier_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="inportNum != null" >
+        inport_num,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="supplierId != null" >
+        #{supplierId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="inportNum != null" >
+        #{inportNum,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="pres.wisdom.entity.InportDetail" >
+    update t_inportdetail
+    <set >
+      <if test="supplierId != null" >
+        supplier_id = #{supplierId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="inportNum != null" >
+        inport_num = #{inportNum,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pres.wisdom.entity.InportDetail" >
+    update t_inportdetail
+    set supplier_id = #{supplierId,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      inport_num = #{inportNum,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      number = #{number,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <select id="selectInportDetail" resultType="pres.wisdom.entity.InportDetailPage" parameterType="pres.wisdom.entity.InportPage" >
+    select 
+    	i.id,i.inport_num as inportNum,i.goods_id as goodsId,g.num as goodsNum,g.name as goodsName,i.number,i.remark
+    from t_inportdetail i
+    join t_goods g 
+ 	on i.goods_Id=g.id
+    where inport_num = #{inportNum,jdbcType=INTEGER} 
+	and i.supplier_id = #{supplierId,jdbcType=INTEGER} 
+	and i.type = #{type,jdbcType=INTEGER} 
+  </select>
+  
+  <delete id="deleteInportDetail" parameterType="pres.wisdom.entity.Inport" >
+    delete from t_inportdetail
+    where inport_num = #{inportNum,jdbcType=VARCHAR}
+    and supplier_id = #{supplierId,jdbcType=INTEGER} 
+    and type = #{type,jdbcType=INTEGER} 
+  </delete>
+</mapper>

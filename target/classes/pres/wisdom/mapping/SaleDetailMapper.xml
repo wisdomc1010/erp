@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pres.wisdom.dao.SaleDetailMapper" >
+  <resultMap id="BaseResultMap" type="pres.wisdom.entity.SaleDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sale_num" property="saleNum" jdbcType="VARCHAR" />
+    <result column="customer_id" property="customerId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="real_price" property="realPrice" jdbcType="DECIMAL" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sale_num, customer_id, type, goods_id, price, real_price, number, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_saledetail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_saledetail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="pres.wisdom.entity.SaleDetail" >
+    insert into t_saledetail (id, sale_num, customer_id, 
+      type, goods_id, price, 
+      real_price, number, remark
+      )
+    values (#{id,jdbcType=INTEGER}, #{saleNum,jdbcType=VARCHAR}, #{customerId,jdbcType=INTEGER}, 
+      #{type,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, 
+      #{realPrice,jdbcType=DECIMAL}, #{number,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="pres.wisdom.entity.SaleDetail" >
+    insert into t_saledetail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="saleNum != null" >
+        sale_num,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="realPrice != null" >
+        real_price,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="saleNum != null" >
+        #{saleNum,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="realPrice != null" >
+        #{realPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="pres.wisdom.entity.SaleDetail" >
+    update t_saledetail
+    <set >
+      <if test="saleNum != null" >
+        sale_num = #{saleNum,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="realPrice != null" >
+        real_price = #{realPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pres.wisdom.entity.SaleDetail" >
+    update t_saledetail
+    set sale_num = #{saleNum,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      real_price = #{realPrice,jdbcType=DECIMAL},
+      number = #{number,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <delete id="deleteSaleDetail" parameterType="pres.wisdom.entity.SalePage" >
+    delete from t_saledetail
+    where sale_num = #{saleNum,jdbcType=VARCHAR}
+    and customer_id = #{customerId,jdbcType=INTEGER}
+    and type = #{type,jdbcType=INTEGER}
+  </delete>
+  
+  <select id="selectBySale" resultType="pres.wisdom.entity.SaleDetailPage" parameterType="pres.wisdom.entity.SalePage" >
+    select 
+    	s.id,s.sale_num as saleNum,s.type,s.goods_id as goodsId,g.num as goodsNum,
+    	g.name as goodsName,s.price,s.real_price as realPrice,s.number,s.remark
+    from t_saledetail s
+    join t_goods g 
+ 	on s.goods_Id=g.id
+    where s.sale_num = #{saleNum,jdbcType=INTEGER} 
+    and s.type= #{type,jdbcType=INTEGER} 
+    and s.customer_id = #{customerId,jdbcType=INTEGER} 
+  </select>
+  <select id="selectBySaleNum" resultType="java.lang.Integer" parameterType="pres.wisdom.entity.SaleDetail" >
+    select 
+    	IFNULL(sum(sd.number),0)
+    from t_sale s
+    join t_saledetail sd
+ 	on s.sale_num=sd.sale_num and s.customer_id=sd.customer_id and s.type=sd.type
+    where (s.state=2 or s.state=3)
+    and s.type = #{type,jdbcType=INTEGER} 
+    and s.customer_id = #{customerId,jdbcType=INTEGER} 
+    and sd.goods_id = #{goodsId,jdbcType=INTEGER} 
+  </select>
+</mapper>

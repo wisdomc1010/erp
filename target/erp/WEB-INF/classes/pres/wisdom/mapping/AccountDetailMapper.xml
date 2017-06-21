@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pres.wisdom.dao.AccountDetailMapper" >
+  <resultMap id="BaseResultMap" type="pres.wisdom.entity.AccountDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="client_id" property="clientId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="list_id" property="listId" jdbcType="INTEGER" />
+    <result column="list_type" property="listType" jdbcType="INTEGER" />
+    <result column="list_price" property="listPrice" jdbcType="DECIMAL" />
+    <result column="list_number" property="listNumber" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="account_time" property="accountTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, client_id, type, list_id, list_type, list_price, list_number, create_time, account_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_accountdetail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_accountdetail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="pres.wisdom.entity.AccountDetail" >
+    insert into t_accountdetail (id, client_id, type, 
+      list_id, list_type, list_price, 
+      list_number, create_time, account_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{clientId,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{listId,jdbcType=INTEGER}, #{listType,jdbcType=INTEGER}, #{listPrice,jdbcType=DECIMAL}, 
+      #{listNumber,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{accountTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="pres.wisdom.entity.AccountDetail" >
+    insert into t_accountdetail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="clientId != null" >
+        client_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="listId != null" >
+        list_id,
+      </if>
+      <if test="listType != null" >
+        list_type,
+      </if>
+      <if test="listPrice != null" >
+        list_price,
+      </if>
+      <if test="listNumber != null" >
+        list_number,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="accountTime != null" >
+        account_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="clientId != null" >
+        #{clientId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="listId != null" >
+        #{listId,jdbcType=INTEGER},
+      </if>
+      <if test="listType != null" >
+        #{listType,jdbcType=INTEGER},
+      </if>
+      <if test="listPrice != null" >
+        #{listPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="listNumber != null" >
+        #{listNumber,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountTime != null" >
+        #{accountTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="pres.wisdom.entity.AccountDetail" >
+    update t_accountdetail
+    <set >
+      <if test="clientId != null" >
+        client_id = #{clientId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="listId != null" >
+        list_id = #{listId,jdbcType=INTEGER},
+      </if>
+      <if test="listType != null" >
+        list_type = #{listType,jdbcType=INTEGER},
+      </if>
+      <if test="listPrice != null" >
+        list_price = #{listPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="listNumber != null" >
+        list_number = #{listNumber,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountTime != null" >
+        account_time = #{accountTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pres.wisdom.entity.AccountDetail" >
+    update t_accountdetail
+    set client_id = #{clientId,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      list_id = #{listId,jdbcType=INTEGER},
+      list_type = #{listType,jdbcType=INTEGER},
+      list_price = #{listPrice,jdbcType=DECIMAL},
+      list_number = #{listNumber,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      account_time = #{accountTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

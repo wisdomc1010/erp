@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pres.wisdom.dao.OperatorMapper">
+	<resultMap id="BaseResultMap" type="pres.wisdom.entity.Operator">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="pwd" property="pwd" jdbcType="VARCHAR" />
+		<result column="realname" property="realname" jdbcType="VARCHAR" />
+		<result column="state" property="state" jdbcType="INTEGER" />
+		<result column="use_state" property="useState" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, name, pwd, realname, state, use_state
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_operator
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from t_operator
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="pres.wisdom.entity.Operator">
+		insert into t_operator (id, name, pwd,
+		realname, state, use_state
+		)
+		values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+		#{pwd,jdbcType=VARCHAR},
+		#{realname,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{useState,jdbcType=INTEGER}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="pres.wisdom.entity.Operator">
+		insert into t_operator
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="pwd != null">
+				pwd,
+			</if>
+			<if test="realname != null">
+				realname,
+			</if>
+			<if test="state != null">
+				state,
+			</if>
+			<if test="useState != null">
+				use_state,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="pwd != null">
+				#{pwd,jdbcType=VARCHAR},
+			</if>
+			<if test="realname != null">
+				#{realname,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=INTEGER},
+			</if>
+			<if test="useState != null">
+				#{useState,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="pres.wisdom.entity.Operator">
+		update t_operator
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="pwd != null">
+				pwd = #{pwd,jdbcType=VARCHAR},
+			</if>
+			<if test="realname != null">
+				realname = #{realname,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				state = #{state,jdbcType=INTEGER},
+			</if>
+			<if test="useState != null">
+				use_state = #{useState,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="pres.wisdom.entity.Operator">
+		update t_operator
+		set name = #{name,jdbcType=VARCHAR},
+		pwd = #{pwd,jdbcType=VARCHAR},
+		realname = #{realname,jdbcType=VARCHAR},
+		state = #{state,jdbcType=INTEGER},
+		use_state = #{useState,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByNamePwd" parameterType="pres.wisdom.entity.Operator"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_operator
+		where name = #{name,jdbcType=VARCHAR} AND pwd =
+		#{pwd,jdbcType=VARCHAR}
+	</select>
+	<select id="findPage" parameterType="pres.wisdom.vo.Page"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_operator
+		order by id
+		limit
+		#{begin,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+	</select>
+	<select id="findRows" resultType="int">
+		select
+		count(1)
+		from t_operator
+	</select>
+	<select id="selectByName" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_operator
+		where name = #{name,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByState" parameterType="java.lang.Integer"
+		resultType="java.lang.Integer">
+		select state 
+		from t_operator
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<update id="updateStateByPrimaryKey" parameterType="java.lang.Integer">
+		update t_operator
+		set state = CASE state WHEN 0 THEN 1 ELSE 0 END 
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateUseStateByPrimaryKey" parameterType="java.lang.Integer">
+		update t_operator
+		set use_State = CASE use_State WHEN 0 THEN 1 ELSE 0 END 
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByCondition" parameterType="pres.wisdom.entity.OperatorPage"
+		resultMap="BaseResultMap">
+		select * from t_operator
+		<where>
+			<if test='!"*".equals(name)'>
+				name like CONCAT('%',#{name},'%')
+			</if>
+			<if test='!"*".equals(realname)'>
+				and realname like CONCAT('%',#{realname},'%')
+			</if>
+			<if test='!"-1".equals(state.toString())'>
+				and state=#{state}
+			</if>
+			<if test='!"-1".equals(useState.toString())'>
+				and use_state=#{useState}
+			</if>
+		</where>
+		order by id
+   		limit 
+   		#{begin,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+	</select>
+</mapper>
